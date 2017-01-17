@@ -1,0 +1,139 @@
+<html>
+
+	<head>
+	
+		<title>Fast Press Game</title>
+		
+		<style type="text/css">
+		
+			body{
+			
+				font-family:arial;
+			
+			}
+		
+			#bigBox{
+			
+				width:700px;
+				height:600px;
+				border:3px magenta solid;
+				background-color:blue;
+			
+			}
+			
+			#gameBox{
+			
+				width:695px;
+				height:390px;
+				border:3px green solid;
+				background-color:white;
+			
+			}
+			
+			#Welcome{
+			
+				text-align:center;
+				margin-bottom:none;
+				color:yellow;
+			
+			}
+			
+			#Description{
+				
+				margin-top:none;
+				text-align:center;
+				color:orange;
+				
+			}
+			
+			#shape{
+			
+				margin:5px;
+			
+			}
+
+			#timeTaken{
+				color:red;
+			}
+		
+		</style>
+	
+	</head>
+	
+	<body>
+		
+		<div id="bigBox">
+	
+			<h1 id="Welcome">Welcome to Reaction Tester</h1>
+			<h2 id="Description">- Press the shapes as they appear -</h2>
+			<br>
+			<h3>Your time: <span id="timeTaken"></span></h3>
+			<div id="gameBox">
+			
+				<div id="shape">
+
+					
+				</div>
+				
+				<script type="text/javascript">
+					
+					waitTwoSeconds();
+
+					document.getElementById("shape").onclick = function(){
+
+							document.getElementById("shape").style.display = "none";
+							var end = new Date();
+							var secondsElapsed = (end - start) / 1000;
+							
+							document.getElementById("timeTaken").innerHTML = secondsElapsed + "s";
+
+							waitTwoSeconds();
+						
+						}
+
+					function waitTwoSeconds() {    
+						setTimeout(displayShape, 500);
+					}
+					
+					function displayShape(){
+						
+						var size = Math.floor((Math.random() * 100) + 100);
+						var top = Math.floor((Math.random() * 200) + 1);
+						var left = Math.floor((Math.random() * 520) + 1);
+
+						var ranShape = Math.random();
+
+						if(ranShape > 0.5){
+							document.getElementById("shape").style.borderRadius = "50%";
+						}else{
+							document.getElementById("shape").style.borderRadius = "0";
+						}
+						
+						start = new Date();
+
+						document.getElementById("shape").style.backgroundColor = getRandomColor();
+						document.getElementById("shape").style.width = size + "px";
+						document.getElementById("shape").style.height = size + "px";
+						document.getElementById("shape").style.position = "relative";
+						document.getElementById("shape").style.top = top + "px";
+						document.getElementById("shape").style.left = left + "px";
+						document.getElementById("shape").style.display = "block";
+					}
+
+					function getRandomColor() {
+
+						var letters = '0123456789ABCDEF';
+						var color = '#';
+						for (var i = 0; i < 6; i++ ) {
+							color += letters[Math.floor(Math.random() * 16)];
+						}
+						return color;
+					}
+						
+				</script>
+			
+			</div>
+		</div>
+	</body>
+
+</html>
